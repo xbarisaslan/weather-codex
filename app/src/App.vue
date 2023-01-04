@@ -1,5 +1,9 @@
 <template>
-  <div id="app" class="app">
+  <div id="app" class="app" :class="[
+      {'rainy': typeof codex.weather?.[0].main != 'undefined' && codex.weather?.[0].main === 'Rain'},
+      {'snowy': typeof codex.weather?.[0].main != 'undefined' && codex.weather?.[0].main === 'Snow'},
+      {'clear': typeof codex.weather?.[0].main != 'undefined' && codex.weather?.[0].main === 'Clear'},
+      {'cloudy': typeof codex.weather?.[0].main != 'undefined' && codex.weather?.[0].main === 'Clouds'}]">
     <input v-model="query" type="text" class="searchbar" placeholder="Enter city name..." @keypress="getWeather">
       <div id="location" :class="typeof codex.name === 'undefined' ? 'hidden' : ''">
        {{ codex.name }}, {{ codex.sys?.country }}
@@ -37,6 +41,7 @@ export default {
 
     setResult(result) {
       this.codex = result
+      console.log(this.codex.weather[0].main)
     },
 
     getDate() {
@@ -66,17 +71,69 @@ export default {
   text-align: center;
   }
 
-.app {
+  #app.app {
   display: flex;
   flex-direction: column;
   text-align: center;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-image: url(./assets/sunny.jpg);
   background-size: 220vh;
   background-repeat: no-repeat;
   color:white;
+  background-image:url(./assets/sunny.jpg);
+}
+
+#app.clear {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-size: 220vh;
+  background-repeat: no-repeat;
+  color:white;
+  background-image:url(./assets/sunny.jpg);
+}
+
+#app.cloudy {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-size: 220vh;
+  background-repeat: no-repeat;
+  color:white;
+  background-image:url(./assets/cloudy.jpg);
+}
+
+#app.snowy {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-size: 220vh;
+  background-repeat: no-repeat;
+  color:white;
+  background-image:url(./assets/snowy.jpg);
+}
+
+#app.rainy {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-size: 220vh;
+  background-repeat: no-repeat;
+  color:white;
+  background-image:url(./assets/rainy.jpg);
 }
 
 .searchbar{
