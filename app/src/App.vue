@@ -10,7 +10,7 @@
       </div>
       <div id="date">{{getDate()}}</div>
       <div id="temp" :class="isNaN(codex.main?.temp) ? 'hidden' : ''">{{Math.round(codex.main?.temp)}}°C</div>
-     
+      <div id="description">{{ codex.weather?.[0].description }}</div>
   </div>
 </template>
 
@@ -117,11 +117,11 @@ export default {
   align-items: center;
   justify-content: center;
   height: 100vh;
+  color:white;
   background-size: 220vh;
   background-repeat: no-repeat;
-  color:white;
-  background-image:url(./assets/snowy.jpg);
-}
+  background-image: url(./assets/snowy5.jpg);
+} 
 
 #app.rainy {
   display: flex;
@@ -133,10 +133,10 @@ export default {
   background-size: 220vh;
   background-repeat: no-repeat;
   color:white;
-  background-image:url(./assets/rainy.jpg);
+  background-image:url(./assets/rainy2.jpg);
 }
 
-.searchbar{
+.searchbar {
   width:50vh;
   border:none;
   border-bottom: 2px solid beige;
@@ -144,6 +144,10 @@ export default {
   border-radius: 10px;
   padding: .6rem;
   color:white;
+}
+
+#description {
+  text-transform: capitalize;
 }
 
 ::placeholder {
